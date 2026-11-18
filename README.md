@@ -12,7 +12,8 @@
 | `support.html` | 고객지원 — 연락처, FAQ |
 | `404.html` | 없는 페이지 안내 |
 | `styles.css` / `main.js` | 스타일시트 / 한·영 전환 (localStorage 저장) |
-| `favicon.svg`, `apple-touch-icon.png` | 아이콘 |
+| `favicon.svg`, `favicon-32.png`, `icon-192.png`, `apple-touch-icon.png` | 아이콘 |
+| `site.webmanifest` | 홈 화면 추가용 매니페스트 |
 
 - 외부 폰트·CDN·추적 스크립트를 쓰지 않습니다. 콘솔 에러 0건, 네트워크 요청은 자체 파일뿐입니다.
 - 언어 전환: 우측 상단 `KO / EN`. `<html data-lang>` + CSS로 전환하므로 JS가 막혀도 국문으로 정상 표시됩니다.

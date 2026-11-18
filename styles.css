@@ -507,6 +507,8 @@ h2 {
   .brand-mark { width: 30px; height: 30px; border-radius: 9px; }
   .hero h1 { letter-spacing: -0.03em; }
   .hero-actions .btn { flex: 1 1 auto; }
+  .hero-note { gap: 4px 12px; }
+  .hero-note span + span::before { display: none; }
   .contact-card { padding: 28px 20px; border-radius: 18px; }
   .site-footer { padding: 44px 0 28px; }
   .footer-top { gap: 20px; }

@@ -1,0 +1,16 @@
+{
+  "name": "아이엔유 I&U",
+  "short_name": "I&U",
+  "description": "아이엔유(I&U) 공식 웹사이트 — 소프트웨어·AI 앱 개발, 디지털 미디어, 이커머스 컨설팅",
+  "lang": "ko",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#0b1220",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
