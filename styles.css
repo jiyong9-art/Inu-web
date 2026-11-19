@@ -370,6 +370,136 @@ h2 {
   padding: 4px 9px;
 }
 
+/* what we do */
+.whatdo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 52px;
+  align-items: start;
+}
+.whatdo-intro h2 { margin-bottom: 16px; }
+.whatdo-intro p { margin: 0 0 14px; color: var(--ink-soft); }
+.whatdo-intro p:last-child { margin-bottom: 0; }
+.whatdo-link { margin: 24px 0 0 !important; }
+.whatdo-link a { font-size: 15px; font-weight: 700; }
+.whatdo-list { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.whatdo-item {
+  display: flex;
+  gap: 14px;
+  padding: 18px 20px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+}
+.whatdo-item h3 { margin: 0 0 3px; font-size: 15.5px; letter-spacing: -0.02em; }
+.whatdo-item p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+/* projects */
+.projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.project {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.project:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: #cfdaf0; }
+
+/* 대표 사진 슬롯: <img> 를 넣으면 이 영역을 그대로 채웁니다 (16:10) */
+.proj-media {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 16 / 10;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(120% 90% at 12% 8%, #eaf1ff 0%, rgba(234, 241, 255, 0) 62%),
+    radial-gradient(120% 90% at 88% 92%, #e3f7f4 0%, rgba(227, 247, 244, 0) 60%),
+    linear-gradient(150deg, #f4f8ff 0%, #eef3fa 100%);
+  border-bottom: 1px solid var(--line);
+}
+.proj-media::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px dashed rgba(150, 174, 209, .55);
+  border-radius: 12px;
+  pointer-events: none;
+}
+.proj-media img,
+.proj-media picture {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.proj-media:has(img)::after { display: none; }
+.proj-art { display: grid; justify-items: center; gap: 8px; }
+.proj-mono {
+  font-size: clamp(1.7rem, 3vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: .12em;
+  color: #a9bcd8;
+  line-height: 1;
+}
+.proj-art-note {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #9aaac2;
+}
+.proj-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: var(--brand-deep);
+  background: rgba(255, 255, 255, .92);
+  border: 1px solid #d7e2f5;
+  border-radius: 999px;
+  padding: 5px 10px;
+  box-shadow: var(--shadow-sm);
+}
+.proj-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.project-body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1 1 auto; }
+.proj-sub {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 6px;
+}
+.project h3 { font-size: 1.08rem; margin: 0 0 10px; letter-spacing: -0.025em; }
+.proj-en { font-size: .78em; font-weight: 600; color: var(--muted); letter-spacing: 0; margin-left: 4px; }
+.project-body > p { margin: 0 0 16px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.65; }
+.projects-note {
+  margin: 30px 0 0;
+  font-size: 14px;
+  color: var(--muted);
+  max-width: 62em;
+}
+.projects-note a { font-weight: 600; }
+
 /* contact */
 .contact-card {
   background: linear-gradient(150deg, #0c1a33 0%, #102a52 55%, #0b2038 100%);
@@ -488,7 +618,9 @@ h2 {
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 64px 0 60px; }
   .about-grid { grid-template-columns: 1fr; gap: 34px; }
+  .whatdo { grid-template-columns: 1fr; gap: 32px; }
   .cards { grid-template-columns: 1fr; }
+  .projects { grid-template-columns: 1fr; }
   .contact-card { grid-template-columns: 1fr; padding: 34px 26px; gap: 30px; }
   .contact-side { border-left: 0; border-top: 1px solid rgba(255,255,255,.13); padding-left: 0; padding-top: 26px; }
   .legal { grid-template-columns: 1fr; }
