@@ -66,7 +66,7 @@ button { font: inherit; }
 .lang-toggle { display: flex; gap: 2px; padding: 2px; border: 1px solid var(--line); border-radius: 999px; }
 .lang-toggle button { min-width: 44px; min-height: 40px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font-family: var(--font-latin); font-size: 13px; font-weight: 700; cursor: pointer; }
 .lang-toggle button[aria-pressed="true"] { background: var(--ink); color: #fff; }
-.menu-btn { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink); cursor: pointer; }
+.menu-btn { position: relative; display: none; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink); cursor: pointer; }
 .menu-btn svg { width: 22px; height: 22px; }
 .menu-btn .icon-close { display: none; }
 .site-header[data-open="true"] .menu-btn .icon-open { display: none; }
@@ -98,7 +98,7 @@ button { font: inherit; }
 .btn-line { border: 1.5px solid var(--ink); color: var(--ink); }
 .btn-line:hover { background: var(--ink); color: #fff; }
 .hero-tiles { flex: 1 1 440px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.tile { position: relative; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 4 / 3; min-height: 210px; padding: 24px; border-radius: 20px; overflow: hidden; text-decoration: none; color: var(--ink); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.tile { position: relative; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 4 / 3; padding: 24px; border-radius: 20px; overflow: hidden; text-decoration: none; color: var(--ink); transition: transform 0.25s ease, box-shadow 0.25s ease; }
 .tile:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(20, 20, 20, 0.14); color: var(--ink); }
 .tile > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; transition: transform 0.6s ease; }
 .tile:hover > img { transform: scale(1.04); }
@@ -115,6 +115,11 @@ button { font: inherit; }
 .tile-game .tile-sub { color: var(--ink); font-weight: 500; }
 .tile-story { background: #f2f0ed; }
 .tile-video { background: #feffff; border: 1.5px solid var(--ink); }
+@media (max-width: 600px) {
+  .tile { aspect-ratio: auto; min-height: 190px; padding: 18px; }
+  .tile > img { object-fit: contain; object-position: right top; }
+  .tile-sub { font-size: 14px; }
+}
 
 /* ---------- about ---------- */
 .about { padding: var(--sec-y) var(--pad-x); background: var(--soft); }

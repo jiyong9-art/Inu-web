@@ -1,4 +1,4 @@
-/* I&U — home page interactions: mobile menu, hover/click media (trailer, EP02, song) */
+/* I&U — home page interactions: mobile menu, in-place hover/click media (trailer, EP02, song) */
 (function () {
   'use strict';
 
@@ -35,7 +35,6 @@
     }
   }
   function isMouse(e) { return !e.pointerType || e.pointerType === 'mouse'; }
-  function fsElement() { return document.fullscreenElement || document.webkitFullscreenElement || null; }
 
   /* ---------- video covers (UnderEarth trailer, EP02) ---------- */
   function VideoCover(el) {
@@ -53,8 +52,7 @@
     function pauseQuiet() { quiet = true; video.pause(); quiet = false; }
     function reset() {
       lock = false; soundHover = false;
-      video.controls = false; video.muted = true; video.style.objectFit = '';
-      if (fsElement() === video && document.exitFullscreen) { document.exitFullscreen().catch(function () {}); }
+      video.muted = true;
       setState('idle');
       el.setAttribute('aria-pressed', 'false');
     }
@@ -63,9 +61,6 @@
 
     video.addEventListener('ended', reset);
     video.addEventListener('pause', function () { if ((lock || soundHover) && !video.ended && !quiet) { reset(); } });
-    document.addEventListener('fullscreenchange', function () {
-      if (fsElement() !== video) { video.controls = false; video.style.objectFit = ''; }
-    });
 
     function playMuted() {
       soundHover = false; video.muted = true;
@@ -100,24 +95,15 @@
     });
     el.addEventListener('click', function () {
       loadSrc();
-      if (lock && fsElement() !== video) { pauseQuiet(); reset(); return; }
+      if (lock) { pauseQuiet(); reset(); return; }
       stopOthers(self);
-      var continuing = soundHover && !video.paused;
+      var continuing = !video.paused;
       lock = true; soundHover = false;
       video.loop = false; video.muted = false;
       if (!continuing) { try { video.currentTime = 0; } catch (err) {} }
       var p = video.play();
       if (p && p.then) { p.then(function () { setState('locked'); el.setAttribute('aria-pressed', 'true'); }).catch(reset); }
-      var req = video.requestFullscreen || video.webkitRequestFullscreen;
-      if (req) {
-        video.controls = true; video.style.objectFit = 'contain';
-        try {
-          var r = req.call(video);
-          if (r && r.catch) { r.catch(function () { video.controls = false; video.style.objectFit = ''; }); }
-        } catch (err) { video.controls = false; video.style.objectFit = ''; }
-      } else if (video.webkitEnterFullscreen) {
-        try { video.webkitEnterFullscreen(); } catch (err) {}
-      }
+      else { setState('locked'); }
     });
     setState('idle');
   }
